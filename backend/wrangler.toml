@@ -1,0 +1,7 @@
+name = "week-13-offline"
+compatibility_date = "2023-12-01"
+
+[vars]
+DATABASE_URL = "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNDRmZWYzMTEtY2FmZi00MTQ5LTlkNDctMTkwZGZiMmUzOGRmIiwidGVuYW50X2lkIjoiMWI4ZDk1YjMxMjY0MmUwM2IyZGRlOWQ3NzQ5NTcxYTEwYjdjZTVmOWIwYmYzYmQ1YWU5NjNjNmRiNzZmNWQzYyIsImludGVybmFsX3NlY3JldCI6ImNkM2QwNWNkLWZhMDktNDIyNS1hNWQyLTlmNjk2YjE4NTcxYSJ9.vCULxJKy0z0NuSzl6AgZx-hTZvqu1vC0r7Vfz2g38f0"
+JWT_SECRET = "realmadrid"
+
