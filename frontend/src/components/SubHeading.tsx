@@ -1,6 +1,3 @@
-import React from 'react';
-
-// Define a type for the props
 type SubHeadingProps = {
   label: string;
 };

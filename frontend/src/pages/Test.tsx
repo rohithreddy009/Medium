@@ -9,7 +9,7 @@ import { Heading } from "../components/Heading";
 import { BottomWarning } from "../components/BottomWarning";
 
 export const Test: React.FC = () => {
-    const [username, setUsername] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false); // Track loading status
     const [error, setError] = useState<string>(""); // State to handle error message
@@ -20,11 +20,11 @@ export const Test: React.FC = () => {
         setError(""); // Reset error message
         try {
             const response = await axios.post("https://week-13-offline.yrohithreddy12.workers.dev/api/v1/user/signin", {
-                username,
+                email,
                 password
             });
-            localStorage.setItem("token", response.data.token); // Store the token
-            localStorage.setItem("name", username);
+            localStorage.setItem("token", response.data.jwt); // Store the token
+            localStorage.setItem("name", email);
             navigate("/blogs"); // Navigate to the dashboard upon successful signin
         } catch (error: any) {
             // Basic error handling
@@ -51,7 +51,7 @@ export const Test: React.FC = () => {
                     <div className="w-4/5 space-y-4">
                         <InputBox
                             // value={username}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                             placeholder="Your email"
                             label="Email"
                         />
