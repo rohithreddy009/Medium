@@ -1,13 +1,13 @@
 Blogger Website
 
-- Blogger website similar to medium where user can post blogs
+- Blogger website similar to medium where user can express their opinions, share their journey and explore a world of ideas
 ## Tech Stack
 
 **Client:** React (Typescript), TailwindCSS
 
-**Server:** Cloudflare Workers
+**Server:** Cloudflare Workers (Hono)
 
-**Authentication:** Zod, JWT, TypeInference
+**Authentication & Validation:** Zod, JWT
 
 **Database:** Postgresql
 
