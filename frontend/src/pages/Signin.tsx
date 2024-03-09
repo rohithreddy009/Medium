@@ -1,66 +1,81 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 
-export const SignIn = () => {
-  const navigate = useNavigate();
-  const [credentials, setCredentials] = useState({
-    username: "",
-    password: "",
-  });
+export const Signin: React.FC = () => {
+    const navigate = useNavigate();
+    const [postInputs, setPostInputs] = useState({
+        email: "",
+        password: ""
+    });
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
 
-  async function handleSubmit() {
-    try {
-      const response = await axios.post(
-        `${BACKEND_URL}/api/v1/user/signin`,
-        credentials,
-      );
-      const jwt = response.data;
-      localStorage.setItem("token", jwt);
-      navigate("/blogs");
-    } catch (e) {
-      console.error("SignIn error:", e);
-      alert("Invalid credentials or network error. Please try again.");
+    const handleSignin = async () => {
+        setIsLoading(true);
+        setError("");
+        try {
+            const response = await axios.post("https://week-13-offline.yrohithreddy12.workers.dev/api/v1/user/signin", postInputs);
+            localStorage.setItem("token", response.data.jwt);
+            navigate("/blogs");
+        } catch (err) {
+            setError("Failed to sign in. Please check your credentials and try again.");
+            setIsLoading(false);
+        }
+    };
+
+    if (isLoading) {
+        return <div className="flex justify-center items-center h-screen bg-gray-800 text-white">Loading...</div>;
     }
-  }
 
-  return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="w-full max-w-md space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
-          </h2>
+    return (
+        <div className="h-screen flex justify-center items-center bg-gray-50 dark:bg-gray-800">
+            <div className="w-full max-w-md">
+                <form className="bg-gray-900 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white text-center mx-auto">Enter your credentials</h1>
+
+                    <div className="mt-4 text-center">
+                        <span className="text-gray-300">Don't have an account?</span>
+                        <Link to="/signup" className="text-blue-400 hover:text-blue-300 ml-1">Sign up</Link>
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="email">
+                            Email
+                        </label>
+                        <input 
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 dark:bg-gray-500" 
+                            id="email" 
+                            type="email" 
+                            placeholder="Email"
+                            value={postInputs.email}
+                            onChange={(e) => setPostInputs({ ...postInputs, email: e.target.value })}
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="password">
+                            Password
+                        </label>
+                        <input 
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 dark:bg-gray-500" 
+                            id="password" 
+                            type="password" 
+                            placeholder="******************"
+                            value={postInputs.password}
+                            onChange={(e) => setPostInputs({ ...postInputs, password: e.target.value })}
+                        />
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <button 
+                            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="button" 
+                            onClick={handleSignin}
+                        >
+                            Sign In
+                        </button>
+                    </div>
+                </form>
+                {error && <p className="text-center text-red-500 text-xs">{error}</p>}
+            </div>
         </div>
-        <input
-          type="text"
-          autoComplete="username"
-          className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-          placeholder="Username"
-          value={credentials.username}
-          onChange={(e) =>
-            setCredentials({ ...credentials, username: e.target.value })
-          }
-        />
-        <input
-          type="password"
-          autoComplete="current-password"
-          className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-          placeholder="Password"
-          value={credentials.password}
-          onChange={(e) =>
-            setCredentials({ ...credentials, password: e.target.value })
-          }
-        />
-        <button
-          type="button"
-          className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          onClick={handleSubmit}
-        >
-          Sign In
-        </button>
-      </div>
-    </div>
-  );
+    );
 };
