@@ -17,10 +17,11 @@ model User {
 }
 
 model Blog {
-  id  Int    @id @default(autoincrement())
-  authorId   Int
-  content    String
+  id  Int     @id @default(autoincrement())
+  authorId    Int
+  content     String
   title       String
-  published Boolean  @default(false)
-  author    User @relation(fields: [authorId], references: [id])
+  published   Boolean  @default(false)
+  author      User @relation(fields: [authorId], references: [id])
+  imageUrl    String?
 }

@@ -7,8 +7,11 @@
     "@100xdevs/medium-common": "^1.0.0",
     "@prisma/client": "^5.10.2",
     "@prisma/extension-accelerate": "^0.6.3",
+    "@rohithreddy9/blogger-common": "1.0.2",
+    "aws-sdk": "^2.1574.0",
     "hono": "^4.0.8",
-    "prisma": "^5.10.2"
+    "prisma": "^5.10.2",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240208.0",

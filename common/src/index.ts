@@ -6,6 +6,8 @@ export const signupInput = z.object({
     name: z.string().optional()
 })
 
+//
+
 export type SignupInput = z.infer<typeof signupInput>
 
 export const signinInput = z.object({
@@ -15,12 +17,16 @@ export const signinInput = z.object({
 
 export type SigninInput = z.infer<typeof signinInput>
 
+//
+
 export const createBlogInput = z.object({
     title: z.string(),
     content: z.string(),
+    imageUrl: z.string()
 })
 export type CreateBlogInput = z.infer<typeof createBlogInput>
 
+//
 export const updateBlogInput = z.object({
     title: z.string(),
     content: z.string(),
