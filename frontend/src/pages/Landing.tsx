@@ -5,7 +5,7 @@ export const Landing = () => {
 
     return (
         <div className="flex flex-col justify-center items-center h-screen bg-black">
-            <h1 className="text-6xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">Welcome to Blogger</h1>
+            <h1 className="text-6xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">Welcome to Medium</h1>
             <h3 className="text-xl md:text-3xl font-normal mb-8 text-gray-300 max-w-md text-center">
                 Express your opinions, share your journey, and explore a world of ideas on Blogger.
             </h3>
