@@ -1,20 +1,20 @@
-import { Appbar } from "../components/Appbar"
-import axios from "axios";
-import { BACKEND_URL } from "../config";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Appbar } from '../components/Appbar'
+import axios from 'axios'
+import { BACKEND_URL } from '../config'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 export const Publish = () => {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const navigate = useNavigate();
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const navigate = useNavigate()
 
     return (
         <div className="bg-gray-900 text-white min-h-screen">
             <Appbar />
-            <div className="flex justify-center w-full pt-8"> 
+            <div className="flex justify-center w-full pt-8">
                 <div className="max-w-screen-lg w-full">
-                    <input 
+                    <input
                         onChange={(e) => setTitle(e.target.value)}
                         type="text"
                         className="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
@@ -22,12 +22,19 @@ export const Publish = () => {
                     />
 
                     <TextEditor onChange={(e) => setDescription(e)} />
-                    
-                    <button 
+
+                    <button
                         onClick={async () => {
-                            const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, { title, content: description }, {
-                                headers: { Authorization: localStorage.getItem("token") }
-                            });
+                            const response = await axios.post(
+                                `${BACKEND_URL}/api/v1/blog`,
+                                { title, content: description },
+                                {
+                                    headers: {
+                                        Authorization:
+                                            localStorage.getItem('token'),
+                                    },
+                                },
+                            )
                             navigate(`/blog/${response.data.id}`)
                         }}
                         type="submit"
@@ -38,13 +45,13 @@ export const Publish = () => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-function TextEditor({ onChange }: {onChange: (value: string) => void}) {
+function TextEditor({ onChange }: { onChange: (value: string) => void }) {
     return (
         <div className="mt-2">
-            <textarea 
+            <textarea
                 onChange={(e) => onChange(e.target.value)}
                 id="editor"
                 rows={8}
@@ -53,5 +60,5 @@ function TextEditor({ onChange }: {onChange: (value: string) => void}) {
                 required
             />
         </div>
-    );
+    )
 }

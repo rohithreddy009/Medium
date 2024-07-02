@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 interface BlogCardProps {
-    authorName: string;
-    title: string;
-    content: string;
-    publishedDate: string;
-    id: number;
+    authorName: string
+    title: string
+    content: string
+    publishedDate: string
+    id: number
 }
 
 export const BlogCard = ({
@@ -13,7 +13,7 @@ export const BlogCard = ({
     authorName,
     title,
     content,
-    publishedDate
+    publishedDate,
 }: BlogCardProps) => {
     return (
         <Link to={`/blog/${id}`} className="block w-full">
@@ -28,26 +28,36 @@ export const BlogCard = ({
                     {title}
                 </div>
                 <div className="text-gray-400 text-sm">
-                    {content.slice(0, 100) + "..."}
+                    {content.slice(0, 100) + '...'}
                 </div>
                 <div className="text-gray-500 text-xs mt-4">
                     {`${Math.ceil(content.length / 100)} minute(s) read`}
                 </div>
             </div>
         </Link>
-    );
+    )
 }
 
 export function Circle() {
-    return <div className="h-2 w-2 rounded-full bg-gray-500"></div>;
+    return <div className="h-2 w-2 rounded-full bg-gray-500"></div>
 }
 
-export function Avatar({ name, size = "small" }: { name: string, size?: "small" | "big" }) {
+export function Avatar({
+    name,
+    size = 'small',
+}: {
+    name: string
+    size?: 'small' | 'big'
+}) {
     return (
-        <div className={`relative flex items-center justify-center overflow-hidden bg-gray-600 text-white rounded-full ${size === "small" ? "w-8 h-8" : "w-12 h-12"}`}>
-            <span className={`font-medium ${size === "small" ? "text-sm" : "text-lg"}`}>
+        <div
+            className={`relative flex items-center justify-center overflow-hidden bg-gray-600 text-white rounded-full ${size === 'small' ? 'w-8 h-8' : 'w-12 h-12'}`}
+        >
+            <span
+                className={`font-medium ${size === 'small' ? 'text-sm' : 'text-lg'}`}
+            >
                 {name[0].toUpperCase()}
             </span>
         </div>
-    );
+    )
 }
